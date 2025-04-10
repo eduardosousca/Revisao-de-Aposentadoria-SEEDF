@@ -1,85 +1,107 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f8;
   margin: 0;
-  padding: 0;
-  background: #f4f4f4;
-  color: #333;
+  padding: 20px;
 }
 
-header {
-  background: #0066cc;
-  color: white;
-  padding: 20px;
+h1, h2 {
+  color: #333;
   text-align: center;
 }
 
-main {
-  padding: 20px;
+form {
   max-width: 1000px;
-  margin: 20px auto;
-}
-
-section {
-  background: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  color: #004080;
-  margin-bottom: 10px;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 5px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
   font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #222;
 }
 
-input, select {
+input[type="text"],
+input[type="number"],
+select {
   width: 100%;
-  max-width: 500px;
-  padding: 8px;
-  margin-bottom: 10px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input.data {
+  width: 100%;
 }
 
 button {
-  background: #003366;
+  background-color: #0077cc;
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
+  padding: 10px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-top: 10px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
-  background: #0055aa;
+  background-color: #005fa3;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #e9e9e9;
-  color: #333;
-  font-size: 0.9em;
-  margin-top: 20px;
+.btn-add {
+  margin-top: 10px;
+  background-color: #28a745;
 }
 
-#gratificacoesContainer {
-  margin-bottom: 10px;
+.btn-add:hover {
+  background-color: #218838;
 }
 
-/* Estilo para os blocos de gratificações adicionadas dinamicamente */
-.gratificacao-bloco {
+.gratif-container {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  background-color: #fdfdfd;
+}
+
+.flex-row {
+  display: flex;
+  gap: 10px;
   margin-bottom: 10px;
-  border-radius: 4px;
+}
+
+.flex-row > div {
+  flex: 1;
+}
+
+.message {
+  font-size: 14px;
+  color: #444;
+  background-color: #f0f0f5;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.message strong {
+  color: #000;
+}
+
+#output {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #e7f3ff;
+  border: 1px solid #b3d7ff;
+  border-radius: 10px;
+  font-size: 15px;
 }
