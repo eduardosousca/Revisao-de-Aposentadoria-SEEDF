@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Revisão de Aposentadoria SEE-DF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Revisão de Aposentadoria SEE-DF</h1>
+  </header>
+
+  <main>
+    <!-- Seção 1: Dados Iniciais -->
+    <section>
+      <h2>Dados do Servidor</h2>
+      <label>Gênero:
+        <select id="genero">
+          <option value="feminino">Feminino</option>
+          <option value="masculino">Masculino</option>
+        </select>
+      </label>
+      <label>Data de nascimento:
+        <input type="date" id="dataNascimento">
+      </label>
+      <label>Data de ingresso no serviço público:
+        <input type="date" id="dataIngresso">
+      </label>
+      <label>Data de aposentadoria:
+        <input type="date" id="dataAposentadoria">
+      </label>
+      <label>Modalidade de Aposentadoria:
+        <select id="modalidade">
+          <option value="especial">Aposentadoria Especial</option>
+          <option value="regraGeral">Regra Geral</option>
+          <option value="regraPontos">Regra de Pontos</option>
+        </select>
+      </label>
+    </section>
+
+    <!-- Seção 2: Tempos -->
+    <section>
+      <h2>Tempos Declarados</h2>
+      <label>Tempo de contribuição (dias): <input type="number" id="diasContribuicao"></label>
+      <label>Tempo de magistério (anos): <input type="number" id="anosMagisterio"></label>
+      <label>Tempo de serviço público (anos): <input type="number" id="anosServicoPublico"></label>
+      <label>Tempo no cargo efetivo (anos): <input type="number" id="anosCargo"></label>
+      <label>Tempo na carreira (anos - regra de pontos): <input type="number" id="anosCarreira"></label>
+    </section>
+
+    <!-- Seção 3: Abono de Permanência -->
+    <section>
+      <h2>Abono de Permanência</h2>
+      <div id="resultadoAbono"></div>
+    </section>
+
+    <!-- Seção 4: Situação entre 2015 e 2022 -->
+    <section>
+      <h2>Situação de Atividade (01/09/2015 a 31/03/2022)</h2>
+      <div id="resultadoSituacao"></div>
+    </section>
+
+    <!-- Seção 5: Licença-Prêmio -->
+    <section>
+      <h2>Licença-Prêmio</h2>
+      <label>Meses de licença a receber: <input type="number" id="mesesLicenca"></label>
+      <label>Valor da parcela (mínimo R$ 2.000): <input type="number" id="valorParcela"></label>
+      <label>Data do 1º pagamento: <input type="date" id="dataParcelaInicial"></label>
+      <div id="resultadoLicenca"></div>
+    </section>
+
+    <!-- Seção 6: Adicional por Tempo de Serviço -->
+    <section>
+      <h2>Adicional por Tempo de Serviço</h2>
+      <label>Anos de serviço: <input type="number" id="anosServicoTotal"></label>
+      <label>Faltas (dias): <input type="number" id="faltas"></label>
+      <label>Licença para familiar (dias): <input type="number" id="licencaFamiliar"></label>
+      <label>Licença própria (dias): <input type="number" id="licencaPropria"></label>
+      <label>LC 173/2020 (dias): <input type="number" id="lc173"></label>
+      <div id="resultadoAdicional"></div>
+    </section>
+
+    <!-- Seção 7: Gratificações -->
+    <section>
+      <h2>Gratificações</h2>
+      <div id="gratificacoesContainer">
+        <!-- Cada gratificação será adicionada dinamicamente -->
+      </div>
+      <button type="button" onclick="adicionarGratificacao()">Adicionar Gratificação</button>
+    </section>
+
+    <!-- Botão final de cálculo -->
+    <section>
+      <button onclick="calcularTudo()">Calcular Revisão</button>
+    </section>
+
+    <!-- Resultados -->
+    <section>
+      <h2>Resultado da Revisão</h2>
+      <div id="resultadoFinal"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Desenvolvido para revisão de aposentadoria dos servidores da SEE-DF.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
