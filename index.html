@@ -1,139 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Revisão de Aposentadoria SEE-DF</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>Revisão de Aposentadoria SEE-DF</h1>
 
-    <form id="form-revisao">
-
-      <!-- Dados Básicos -->
+    <form id="formRevisao">
+      <!-- Seção: Dados Básicos -->
       <fieldset>
-        <legend>Dados do Servidor</legend>
-        <label>Nome:
-          <input type="text" id="nome">
-        </label>
-        <label>Gênero:
-          <select id="genero">
-            <option value="feminino">Feminino</option>
-            <option value="masculino">Masculino</option>
-          </select>
-        </label>
-        <label>Data de nascimento:
-          <input type="text" class="data" id="nascimento">
-        </label>
-        <label>Data de ingresso no serviço público:
-          <input type="text" class="data" id="ingresso">
-        </label>
-        <label>Data de aposentadoria:
-          <input type="text" class="data" id="aposentadoria">
-        </label>
-      </fieldset>
+        <legend>Informações do Servidor</legend>
 
-      <!-- Tipo de Aposentadoria -->
-      <fieldset>
-        <legend>Critério de Aposentadoria</legend>
-        <select id="criterio">
+        <label for="genero">Gênero:</label>
+        <select id="genero" required>
           <option value="">Selecione</option>
-          <option value="especial">Aposentadoria Especial</option>
-          <option value="regra_geral">Regra Geral</option>
-          <option value="pontos">Regra de Pontos</option>
+          <option value="feminino">Feminino</option>
+          <option value="masculino">Masculino</option>
         </select>
-        <div id="ingresso-pos-2003-container" style="display: none;">
-          <label>Ingressou após 2003?
-            <select id="ingresso_pos_2003">
-              <option value="nao">Não</option>
-              <option value="sim">Sim</option>
-            </select>
-          </label>
-        </div>
+
+        <label for="modalidade">Modalidade de Aposentadoria:</label>
+        <select id="modalidade" required onchange="alternarCamposPorRegra()">
+          <option value="">Selecione</option>
+          <option value="especial">Especial</option>
+          <option value="regra_geral">Regra Geral</option>
+          <option value="regra_pontos">Regra de Pontos</option>
+        </select>
+
+        <label for="nascimento">Data de Nascimento:</label>
+        <input type="text" id="nascimento" class="data" maxlength="10" placeholder="DD/MM/AAAA" required />
+
+        <label for="entradaServicoPublico">Entrada no Serviço Público:</label>
+        <input type="text" id="entradaServicoPublico" class="data" maxlength="10" placeholder="DD/MM/AAAA" required />
+
+        <label for="aposentadoria">Data da Aposentadoria:</label>
+        <input type="text" id="aposentadoria" class="data" maxlength="10" placeholder="DD/MM/AAAA" required />
       </fieldset>
 
-      <!-- Tempos Declarados -->
+      <!-- Seção: Tempos Declarados -->
       <fieldset>
-        <legend>Tempos Declarados</legend>
-        <label>Dias de contribuição especial:
-          <input type="number" id="dias_contribuicao">
-        </label>
-        <label>Dias de serviço público:
-          <input type="number" id="dias_servico_publico">
-        </label>
-        <label>Dias no magistério:
-          <input type="number" id="dias_magisterio">
-        </label>
-        <label>Dias no último cargo:
-          <input type="number" id="dias_ultimo_cargo">
-        </label>
-        <div id="campo-carreira" style="display: none;">
-          <label>Dias na carreira:
-            <input type="number" id="dias_na_carreira">
-          </label>
+        <legend>Tempos Declarados (em dias)</legend>
+
+        <label for="diasContribuicao">Tempo de Contribuição Especial:</label>
+        <input type="number" id="diasContribuicao" placeholder="Ex: 9125" required />
+
+        <label for="diasServicoPublico">Tempo no Serviço Público:</label>
+        <input type="number" id="diasServicoPublico" placeholder="Ex: 7300" required />
+
+        <label for="diasMagisterio">Tempo de Magistério:</label>
+        <input type="number" id="diasMagisterio" placeholder="Ex: 3650" required />
+
+        <label for="diasCargoEfetivo">Tempo no Último Cargo Efetivo:</label>
+        <input type="number" id="diasCargoEfetivo" placeholder="Ex: 1825" required />
+
+        <div id="campoCarreira" style="display: none;">
+          <label for="diasCarreira">Tempo na Carreira:</label>
+          <input type="number" id="diasCarreira" placeholder="Ex: 5475" />
         </div>
       </fieldset>
 
-      <!-- Abono Permanência -->
+      <!-- Seção: Abono Permanência -->
       <fieldset>
         <legend>Abono Permanência</legend>
-        <p id="abono-periodo"></p>
-        <p id="abono-prescricao" class="alerta"></p>
+        <p>O sistema calculará automaticamente o período de direito ao abono.</p>
       </fieldset>
 
-      <!-- Situação entre 01/09/2015 e 31/03/2022 -->
-      <fieldset>
-        <legend>Situação entre 01/09/2015 e 31/03/2022</legend>
-        <p id="situacao-periodo"></p>
-      </fieldset>
-
-      <!-- Licença Prêmio -->
+      <!-- Seção: Licença Prêmio -->
       <fieldset>
         <legend>Licença Prêmio</legend>
-        <label>Meses de LPA não gozados:
-          <input type="number" id="lpa_meses">
-        </label>
-        <label>Valor da parcela (R$):
-          <input type="text" id="lpa_valor">
-        </label>
-        <label>Data do 1º pagamento:
-          <input type="text" class="data" id="lpa_primeiro_pagamento">
-        </label>
-        <p id="lpa-fim"></p>
-        <p id="lpa-correcao" class="alerta"></p>
+
+        <label for="diasLicencaPremio">Dias de Licença-Prêmio a Receber:</label>
+        <input type="number" id="diasLicencaPremio" placeholder="Ex: 90" />
+
+        <label for="valorParcela">Valor da Parcela (R$):</label>
+        <input type="text" id="valorParcela" placeholder="Ex: 2000,00" />
+
+        <label for="dataPrimeiraParcela">Data da 1ª Parcela:</label>
+        <input type="text" id="dataPrimeiraParcela" class="data" maxlength="10" placeholder="DD/MM/AAAA" />
       </fieldset>
 
-      <!-- Adicional por Tempo de Serviço -->
+      <!-- Seção: Adicional por Tempo de Serviço -->
       <fieldset>
         <legend>Adicional por Tempo de Serviço</legend>
-        <label>Dias de serviço:
-          <input type="number" id="dias_servico">
-        </label>
-        <label>Averbado incluso (dias):
-          <input type="number" id="averbado_incluso">
-        </label>
-        <label>Averbado não incluso (dias):
-          <input type="number" id="averbado_nao_incluso">
-        </label>
-        <p id="percentual-ats"></p>
+
+        <label for="diasServicoTotal">Dias de Serviço:</label>
+        <input type="number" id="diasServicoTotal" placeholder="Ex: 9125" required />
+
+        <label for="diasAverbadoIncluso">Averbado Incluso (dias):</label>
+        <input type="number" id="diasAverbadoIncluso" placeholder="Ex: 500" />
+
+        <label for="diasAverbadoNaoIncluso">Averbado Não Incluso (dias):</label>
+        <input type="number" id="diasAverbadoNaoIncluso" placeholder="Ex: 200" />
       </fieldset>
 
-      <!-- Gratificações -->
+      <!-- Seção: Gratificações -->
       <fieldset>
         <legend>Gratificações</legend>
-        <div id="modulos-gratificacoes"></div>
+
+        <div id="moduloGratificacoes"></div>
+        <button type="button" onclick="adicionarGratificacao()">Adicionar Gratificação</button>
       </fieldset>
 
-      <button type="submit" id="calcular">Calcular Revisão</button>
+      <!-- Botão Final -->
+      <div style="margin-top: 20px;">
+        <button type="submit">Calcular Revisão</button>
+      </div>
     </form>
 
-    <!-- Resultados -->
-    <section id="resultados">
-      <h2>Resultado da Revisão</h2>
-      <div id="resultado-final"></div>
-    </section>
+    <div id="resultado" style="margin-top: 40px;"></div>
   </div>
 
   <script src="script.js"></script>
